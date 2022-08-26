@@ -1,0 +1,16 @@
+{
+    "name": "psydoc/laravel-javascript-enums",
+    "description": "Allows the use of PHP enums in your javascript.",
+    "autoload": {
+        "psr-4": {
+            "Psydoc\\LaravelJavascriptEnums\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Thor Nissen",
+            "email": "thorjnissen@gmail.com"
+        }
+    ],
+    "require": {}
+}
