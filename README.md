@@ -1,6 +1,6 @@
 # Laravel Javascript Enums Package
 
-Used in conjunction with [PHP 8 enums](https://www.php.net/manual/en/language.types.enumerations.php).
+Used in conjunction with [PHP 8 enums](https://www.php.net/manual/en/language.types.enumerations.php) to allow use of enums in javascript.
 
 ## Installation
 
