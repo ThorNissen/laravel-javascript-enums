@@ -11,7 +11,7 @@ Add the following to your `composer.json`
         "type": "vcs",
         "url": "https://github.com/ThorNissen/laravel-javascript-enums"
     }
-]
+],
 ```
 
 Run
@@ -30,7 +30,7 @@ php artisan vendor:publish --tag=laravel-javascript-enums-config
 
 Add `@enums` to your blade files, before your other javascript files that need access to the enums.
 
-Example
+Example:
 ```
 <head>
     ...
@@ -38,4 +38,19 @@ Example
     @enums
     <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
+```
+
+Enums are now available in javascript using `enums.{enum}.{key}`
+
+Example:
+```
+enum UserType: int
+{
+    case ADMIN = 1;
+    case USER = 2;
+}
+```
+```
+console.log(enums.UserType.ADMIN); // 1
+console.log(enums.UserType.USER);  // 2
 ```

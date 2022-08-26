@@ -58,6 +58,10 @@ class LaravelJavascriptEnumsProvider extends ServiceProvider
 
         $path = config('laravel-javascript-enums.path');
         
+        if (!is_dir($path)) {
+            return [];
+        }
+
         $results = scandir($path);
 
         foreach ($results as $result) {
