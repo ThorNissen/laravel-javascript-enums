@@ -45,7 +45,6 @@ class LaravelJavascriptEnumsProvider extends ServiceProvider
     private function formatCases($cases) 
     {
         $enum = [];
-
         foreach ($cases as $case) {
             $enum[$case->name] = $case->value;
         }
@@ -55,8 +54,8 @@ class LaravelJavascriptEnumsProvider extends ServiceProvider
 
     private function getEnums() {
         $out = [];
-
         $path = config('laravel-javascript-enums.path');
+        $excluded = $this->getExcluded();
         
         if (!is_dir($path)) {
             return [];
@@ -65,7 +64,7 @@ class LaravelJavascriptEnumsProvider extends ServiceProvider
         $results = scandir($path);
 
         foreach ($results as $result) {
-            if ($result === '.' or $result === '..') {
+            if ($result === '.' || $result === '..' || in_array($result, $excluded)) {
                 continue;
             }
 
@@ -79,5 +78,18 @@ class LaravelJavascriptEnumsProvider extends ServiceProvider
         }
 
         return $out;
+    }
+
+    private function getExcluded()
+    {
+        $excluded = config('laravel-javascript-enums.excluded');
+        
+        $formattedExcluded = [];
+        foreach ($excluded as $exclude) {
+            $exploded = explode('\\', $exclude);
+            $formattedExcluded[] = end($exploded) . '.php';
+        }
+
+        return $formattedExcluded;
     }
 }
