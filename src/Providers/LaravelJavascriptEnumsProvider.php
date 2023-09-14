@@ -33,7 +33,11 @@ class LaravelJavascriptEnumsProvider extends ServiceProvider
 
                 $enum = config('laravel-javascript-enums.class_prefix').$enum;
                 
-                $formattedEnums[end($explodedClassPath)] = $this->formatCases($enum::cases());
+                if (config('laravel-javascript-enums.is_ben_sampo')) {
+                    $formattedEnums[end($explodedClassPath)] = $enum::asArray();
+                } else {
+                    $formattedEnums[end($explodedClassPath)] = $this->formatCases($enum::cases());
+                }
             }
 
             $formattedEnums = json_encode($formattedEnums);
